@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d916e298-a45d-4d1e-9aa8-4d3f69640c26" name="Changes" comment="feat(1): Implementation of User class" />
+    <list default="true" id="d916e298-a45d-4d1e-9aa8-4d3f69640c26" name="Changes" comment="feat(1): Implementation of User class">
+      <change afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/config/AppProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/controller/UserApiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/controller/UserViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/service/UserStatsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +47,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -112,7 +125,7 @@
       <workItem from="1782743448036" duration="196000" />
       <workItem from="1782743672214" duration="28000" />
       <workItem from="1782743725599" duration="934000" />
-      <workItem from="1782744684663" duration="1116000" />
+      <workItem from="1782744684663" duration="13050000" />
     </task>
     <task id="LOCAL-00001" summary="feat(1): Implementation of User class">
       <option name="closed" value="true" />

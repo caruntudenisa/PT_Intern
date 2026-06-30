@@ -27,7 +27,7 @@ public class User {
             return this.id;
         }
 
-        private String getName(){
+        public String getName(){
             return this.name;
         }
 
@@ -35,11 +35,11 @@ public class User {
             this.id=id;
         }
 
-        private void setName(String name){
+        public void setName(String name){
             this.name=name;
         }
 
-        private String getEmail(){
+        public String getEmail(){
             return this.email;
         }
 
@@ -47,6 +47,7 @@ public class User {
             this.email=email;
         }
 
-
-
+    public void setEmail(String email) {
+            this.email=email;
+    }
 }
