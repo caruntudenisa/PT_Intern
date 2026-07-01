@@ -23,7 +23,7 @@ public class User {
             this.name=name;
         }
 
-        private Long getId(){
+        public Long getId(){
             return this.id;
         }
 
@@ -31,7 +31,7 @@ public class User {
             return this.name;
         }
 
-        private void setId(Long id){
+        public void setId(Long id){
             this.id=id;
         }
 
@@ -43,7 +43,7 @@ public class User {
             return this.email;
         }
 
-        private void setName(){
+        public void setName(){
             this.email=email;
         }
 
