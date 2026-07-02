@@ -5,34 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d916e298-a45d-4d1e-9aa8-4d3f69640c26" name="Changes" comment="feat(): fix gitignore">
-      <change beforePath="$PROJECT_DIR$/.gradle/9.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.5.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.5.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.5.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.5.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/User.class.uniqueId2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserApiController.class.uniqueId4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserRepository.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserService.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserStatsAspect.class.uniqueId3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/UserViewController.class.uniqueId5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/SpringUsersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/SpringUsersApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/aspect/UserStatsAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/aspect/UserStatsAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/config/AppProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/config/AppProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/controller/UserApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/controller/UserApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/controller/UserViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/controller/UserViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/service/UserStatsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/betr/intern/spring_users/service/UserStatsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/betr/intern/spring_users/SpringUsersApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/betr/intern/spring_users/SpringUsersApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -29,7 +29,7 @@ public class UserStatsAspect {
 
       if (optionalUser.isPresent() && optionalUser.get() instanceof User) {
         final User user = (User) optionalUser.get();
-        userStatsService.incrementCount(Long.valueOf(user.getName()));
+        userStatsService.incrementCount(user.getId());
       }
     }
   }
