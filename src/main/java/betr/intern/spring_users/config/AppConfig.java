@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
-    @Bean
-    public UserStatsService userStatsService(){
-        return new UserStatsService();
-    }
+  @Bean
+  public UserStatsService userStatsService() {
+    return new UserStatsService();
+  }
 }

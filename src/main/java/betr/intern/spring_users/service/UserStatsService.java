@@ -1,21 +1,26 @@
 package betr.intern.spring_users.service;
 
+import org.yaml.snakeyaml.events.Event;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UserStatsService {
 
-    private final Map<String,Integer> stats = new ConcurrentHashMap<>();
 
-    public void incrementCount(String username){
-        stats.merge(username,1,Integer::sum);
-    }
+  private final Map<Long, Integer> stats = new ConcurrentHashMap<>();
 
-    public Map <String,Integer> getStats(){
-        return stats;
-    }
 
-    public void resetStats(){
-        stats.clear();
-    }
+  public void incrementCount(final Long userId) {
+    stats.merge(userId, 1, Integer::sum);
+  }
+
+  public Map<Long, Integer> getStats() {
+    return stats;
+  }
+
+  public void resetStats() {
+    stats.clear();
+  }
+
 }
