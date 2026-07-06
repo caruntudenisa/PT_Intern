@@ -1,6 +1,7 @@
 package betr.intern.spring_users.controller;
 
 import betr.intern.spring_users.model.User;
+import betr.intern.spring_users.model.UserStats;
 import betr.intern.spring_users.service.UserService;
 import betr.intern.spring_users.service.UserStatsService;
 import java.util.List;
@@ -36,7 +37,8 @@ public class UserApiController {
 
   // The update of an user
   @PutMapping("/users/{id}")
-  public ResponseEntity<User> updateUser(final @PathVariable Long id,final @RequestBody User userDetails) {
+  public ResponseEntity<User> updateUser(
+      final @PathVariable Long id, final @RequestBody User userDetails) {
     try {
       final User updatedUser = userService.updateUser(id, userDetails);
       return ResponseEntity.ok(updatedUser);
@@ -56,7 +58,7 @@ public class UserApiController {
   }
 
   @GetMapping("/stats")
-  public Map<Long, Integer> getStats() {
+  public Map<Long, UserStats> getStats() {
     return userStatsService.getStats();
   }
 
