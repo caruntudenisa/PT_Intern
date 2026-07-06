@@ -1,4 +1,6 @@
 package betr.intern.spring_users.model;
 
-public record UserStats() {
-}
+import java.time.OffsetDateTime;
+
+public record UserStats(int count, OffsetDateTime lastUpdated) {}
+
