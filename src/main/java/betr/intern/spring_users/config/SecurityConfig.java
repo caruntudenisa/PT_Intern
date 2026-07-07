@@ -1,5 +1,6 @@
 package betr.intern.spring_users.config;
 
+import betr.intern.spring_users.model.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,57 +16,49 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity // for applying all the security in all the urls
+@EnableWebSecurity
 public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(final HttpSecurity http) {
     http.csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(
-            auth -> // bloc of configuration for acces rules
-            auth.requestMatchers("/stats")
-                    .permitAll() // acces for everyone until login
+            auth ->
+                auth.requestMatchers("/stats")
+                    .permitAll()
                     .requestMatchers(HttpMethod.POST, "/users")
-                    .hasRole("ADMIN") // only admins will have acces to this route, to create new
-                    // resources
+                    .hasRole(Role.ADMIN.name())
                     .requestMatchers(HttpMethod.PUT, "/users/**")
-                    .hasRole("ADMIN") // only admins will have acces to these resources, for update
+                    .hasRole(Role.ADMIN.name())
                     .anyRequest()
-                    .authenticated() // for the rest of the endpoints
-            )
+                    .authenticated())
         .httpBasic(Customizer.withDefaults());
-    return http
-        .build(); // they will run under a SecurityFilterChain object that will be applied at the
-    // beginning of the app to filter the security
+    return http.build();
   }
 
   @Bean
-  public UserDetailsService userDetailsService(
-      final PasswordEncoder
-          passwordEncoder) { // interface used for verifying the name, role and password
+  public UserDetailsService userDetailsService(final PasswordEncoder passwordEncoder) {
     final UserDetails user1 =
         User.withUsername("user1")
             .password(passwordEncoder.encode("password1"))
-            .roles("USER")
+            .roles(Role.USER.name())
             .build();
 
     final UserDetails user2 =
         User.withUsername("user2")
             .password(passwordEncoder.encode("password2"))
-            .roles("USER")
+            .roles(Role.USER.name())
             .build();
     final UserDetails admin =
         User.withUsername("admin")
             .password(passwordEncoder.encode("password3"))
-            .roles("ADMIN")
+            .roles(Role.ADMIN.name())
             .build();
     return new InMemoryUserDetailsManager(user1, user2, admin);
   }
 
   @Bean
-  public PasswordEncoder
-      passwordEncoder() { // class that implements the UserDetailsService interface and will map the
-    // objects in the ram memory
+  public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 }

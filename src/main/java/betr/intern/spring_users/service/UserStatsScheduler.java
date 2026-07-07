@@ -11,8 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserStatsScheduler {
 
-  private static final Logger logger =
-      LoggerFactory.getLogger(UserStatsScheduler.class); // initialized logger for sending messages
+  private static final Logger logger = LoggerFactory.getLogger(UserStatsScheduler.class);
   private final UserStatsService userStatsService;
 
   public UserStatsScheduler(final UserStatsService userStatsService) {
@@ -20,35 +19,27 @@ public class UserStatsScheduler {
   }
 
   @Scheduled(cron = "0 * * * * *")
-  // cron expression used to make it run in every second of the starting minute
-  // puteam face si cu fixed rate = 60000 pointing the ms that i have
-  // the structure of cron: s,m,h,d,m,dayofweek
-
   public void logCurrentStats() {
-    logger.info("report");
     final Map<Long, UserStats> stats = userStatsService.getStats();
 
     if (stats.isEmpty()) {
-      logger.info("no stats."); // for users that were never searched
+      logger.info("no stats.");
       return;
     }
+    printStats(stats);
+  }
+
+  private void printStats(final Map<Long, UserStats> stats) {
     stats.forEach(
         (userId, userStats) -> {
-          System.out.println(
-              "user with id="
-                  + userId
-                  + " has been searched for "
-                  + userStats.count()
-                  + " times"); // it will show how many times it has been shown
+          logger.info("user with id={} has been searched for {} times", userId, userStats.count());
         });
   }
 
   @Scheduled(cron = "0 */5 * * * *")
   public void cleanOldStats() {
     logger.info("cleaning stats");
-    final OffsetDateTime twoMinutesAgo =
-        OffsetDateTime.now()
-            .minusMinutes(2); // i will delete all time records that are older than that
+    final OffsetDateTime twoMinutesAgo = OffsetDateTime.now().minusMinutes(2);
 
     userStatsService.removeStatsOlderThan(twoMinutesAgo);
     logger.info("stats older than 2 minutes have been removed.");
