@@ -1,6 +1,7 @@
 package betr.intern.spring_users.aspect;
 
 import betr.intern.spring_users.model.User;
+import betr.intern.spring_users.service.StatsWebSocketHandler;
 import betr.intern.spring_users.service.UserStatsService;
 import java.util.Optional;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -13,10 +14,13 @@ import org.springframework.stereotype.Component;
 public class UserStatsAspect {
 
   private final UserStatsService userStatsService;
+  private final StatsWebSocketHandler statsWebSocketHandler;
 
   @Autowired
-  public UserStatsAspect(final UserStatsService userStatsService) {
+  public UserStatsAspect(
+      final UserStatsService userStatsService, final StatsWebSocketHandler statsWebSocketHandler) {
     this.userStatsService = userStatsService;
+    this.statsWebSocketHandler = statsWebSocketHandler;
   }
 
   @AfterReturning(
@@ -30,6 +34,7 @@ public class UserStatsAspect {
       if (optionalUser.isPresent() && optionalUser.get() instanceof User) {
         final User user = (User) optionalUser.get();
         userStatsService.incrementCount(user.getId());
+        statsWebSocketHandler.broadcastStats(userStatsService.getStats());
       }
     }
   }

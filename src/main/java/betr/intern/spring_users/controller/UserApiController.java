@@ -1,6 +1,10 @@
 package betr.intern.spring_users.controller;
 
+import betr.intern.spring_users.api.UsersApi;
+import betr.intern.spring_users.mapper.UserMapper;
 import betr.intern.spring_users.model.User;
+import betr.intern.spring_users.model.UserStats;
+import betr.intern.spring_users.model.dto.UserDto;
 import betr.intern.spring_users.service.UserService;
 import betr.intern.spring_users.service.UserStatsService;
 import java.util.List;
@@ -9,14 +13,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class UserApiController {
+public class UserApiController implements UsersApi {
 
   private final UserService userService;
   private final UserStatsService userStatsService;
+  private final UserMapper userMapper;
 
-  public UserApiController(final UserService userService, final UserStatsService userStatsService) {
+  public UserApiController(
+      final UserService userService,
+      final UserStatsService userStatsService,
+      final UserMapper userMapper) {
     this.userService = userService;
     this.userStatsService = userStatsService;
+    this.userMapper = userMapper;
   }
 
   // Finding all the users in Json format
@@ -25,21 +34,12 @@ public class UserApiController {
     return userService.getAllUsers();
   }
 
-  // Finding one specific user in Json format
-  @GetMapping("/user/{id}")
-  public ResponseEntity<User> getUserById(final @PathVariable Long id) {
-    return userService
-        .getUserById(id)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
-  }
-
-  // The update of an user
-  @PutMapping("/users/{id}")
-  public ResponseEntity<User> updateUser(final @PathVariable Long id,final @RequestBody User userDetails) {
+  @Override
+  public ResponseEntity<UserDto> updateUser(final Long id, final UserDto userDto) {
     try {
+      final User userDetails = userMapper.toEntity(userDto);
       final User updatedUser = userService.updateUser(id, userDetails);
-      return ResponseEntity.ok(updatedUser);
+      return ResponseEntity.ok(userMapper.toDto(updatedUser));
     } catch (final RuntimeException e) {
       return ResponseEntity.notFound().build();
     }
@@ -56,7 +56,7 @@ public class UserApiController {
   }
 
   @GetMapping("/stats")
-  public Map<Long, Integer> getStats() {
+  public Map<Long, UserStats> getStats() {
     return userStatsService.getStats();
   }
 
