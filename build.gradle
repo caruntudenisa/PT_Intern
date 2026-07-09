@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '4.1.0'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id("com.diffplug.spotless") version "8.7.0"
+	id "org.openapi.generator" version "7.1.0"
 }
 
 group = 'betr.intern'
@@ -29,6 +30,38 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.springframework.boot:spring-boot-starter-aspectj'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	
+	// Task 3 additions
+	implementation 'org.springframework.boot:spring-boot-starter-graphql'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+	implementation 'org.openapitools:jackson-databind-nullable:0.2.10'
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+}
+
+tasks.register('generateAdminApi', org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
+	generatorName = "spring"
+	inputSpec = "$projectDir/src/main/resources/openapi/admin-api.yml".toString()
+	outputDir = layout.buildDirectory.dir('openapi').get().toString()
+	apiPackage = "betr.intern.spring_users.api"
+	modelPackage = "betr.intern.spring_users.model.dto"
+	configOptions = [
+		interfaceOnly: "true",
+		useSpringBoot3: "true",
+		useTags: "true"
+	]
+}
+
+compileJava.dependsOn tasks.generateAdminApi
+
+sourceSets {
+	main {
+		java {
+			srcDirs += ["${layout.buildDirectory.get().asFile.path}/openapi/src/main/java"]
+		}
+	}
 }
 
 tasks.named('test') {
@@ -37,6 +70,7 @@ tasks.named('test') {
 
 spotless {
 	java {
+		target 'src/main/java/**/*.java'
 		googleJavaFormat()
 		removeUnusedImports()
 		trimTrailingWhitespace()
