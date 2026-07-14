@@ -1,21 +1,27 @@
 package betr.intern.spring_users.service;
 
-import org.yaml.snakeyaml.events.Event;
-
+import betr.intern.spring_users.model.UserStats;
+import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UserStatsService {
 
-
-  private final Map<Long, Integer> stats = new ConcurrentHashMap<>();
-
+  private final Map<Long, UserStats> stats = new ConcurrentHashMap<>();
 
   public void incrementCount(final Long userId) {
-    stats.merge(userId, 1, Integer::sum);
+    stats.compute(
+        userId,
+        (key, existingStats) -> {
+          if (existingStats == null) {
+            return new UserStats(1, OffsetDateTime.now());
+          } else {
+            return new UserStats(existingStats.count() + 1, OffsetDateTime.now());
+          }
+        });
   }
 
-  public Map<Long, Integer> getStats() {
+  public Map<Long, UserStats> getStats() {
     return stats;
   }
 
@@ -23,4 +29,8 @@ public class UserStatsService {
     stats.clear();
   }
 
+  public void removeStatsOlderThan(final OffsetDateTime threshold) {
+    stats.entrySet().removeIf(entry -> entry.getValue().lastUpdated().isBefore(threshold));
+    // method for deleting all values that take longer than the threshold, before it
+  }
 }
