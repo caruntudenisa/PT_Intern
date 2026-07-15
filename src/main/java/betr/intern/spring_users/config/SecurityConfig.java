@@ -24,11 +24,11 @@ public class SecurityConfig {
     http.csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers("/stats")
+                auth.requestMatchers("/stats", "/graphiql/**", "/ws/stats/**")
                     .permitAll()
                     .requestMatchers(HttpMethod.POST, "/users")
                     .hasRole(Role.ADMIN.name())
-                    .requestMatchers(HttpMethod.PUT, "/users/**")
+                    .requestMatchers(HttpMethod.PUT, "/user/**")
                     .hasRole(Role.ADMIN.name())
                     .anyRequest()
                     .authenticated())
