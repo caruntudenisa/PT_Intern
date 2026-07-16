@@ -23,11 +23,11 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  public Optional<User> getUserById(final Long id) {
+  public Optional<User> getUserById(final String id) {
     return userRepository.findById(id);
   }
 
-  public User updateUser(final Long id, final User userDetails) {
+  public User updateUser(final String id, final User userDetails) {
     final User user =
         userRepository
             .findById(id)
@@ -39,7 +39,7 @@ public class UserService {
     return userRepository.save(user);
   }
 
-  public void deleteUser(final Long id) {
+  public void deleteUser(final String id) {
 
     if (!userRepository.existsById(id)) {
       throw new RuntimeException("There is no user with this id!");

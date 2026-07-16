@@ -35,7 +35,7 @@ public class UserApiController implements UsersApi {
   }
 
   @Override
-  public ResponseEntity<UserDto> updateUser(final Long id, final UserDto userDto) {
+  public ResponseEntity<UserDto> updateUser(final String id, final UserDto userDto) {
     try {
       final User userDetails = userMapper.toEntity(userDto);
       final User updatedUser = userService.updateUser(id, userDetails);
@@ -46,7 +46,7 @@ public class UserApiController implements UsersApi {
   }
 
   @DeleteMapping("/users/{id}")
-  public ResponseEntity<Void> deteleUser(final @PathVariable Long id) {
+  public ResponseEntity<Void> deteleUser(final @PathVariable String id) {
     try {
       userService.deleteUser(id);
       return ResponseEntity.ok().build();
@@ -56,7 +56,7 @@ public class UserApiController implements UsersApi {
   }
 
   @GetMapping("/stats")
-  public Map<Long, UserStats> getStats() {
+  public Map<String, UserStats> getStats() {
     return userStatsService.getStats();
   }
 

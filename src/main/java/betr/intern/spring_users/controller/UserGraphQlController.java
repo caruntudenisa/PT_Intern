@@ -16,7 +16,7 @@ public class UserGraphQlController {
   }
 
   @QueryMapping
-  public User userById(@Argument final Long id) {
+  public User userById(@Argument final String id) {
     return userService.getUserById(id).orElse(null);
   }
 }

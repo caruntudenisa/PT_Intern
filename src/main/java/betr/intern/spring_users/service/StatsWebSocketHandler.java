@@ -35,7 +35,7 @@ public class StatsWebSocketHandler extends TextWebSocketHandler {
     logger.info("WebSocket connection closed: " + session.getId());
   }
 
-  public void broadcastStats(final Map<Long, UserStats> stats) {
+  public void broadcastStats(final Map<String, UserStats> stats) {
     try {
       final String json = objectMapper.writeValueAsString(stats);
       final TextMessage message = new TextMessage(json);

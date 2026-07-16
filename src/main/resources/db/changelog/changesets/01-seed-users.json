@@ -1,0 +1,72 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "1-seed-initial-users",
+        "author": "denisa",
+        "changes": [
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Admin User\", \"email\": \"admin@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"User One\", \"email\": \"user1@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"User Two\", \"email\": \"user2@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Alice\", \"email\": \"alice@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Bob\", \"email\": \"bob@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Charlie\", \"email\": \"charlie@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"David\", \"email\": \"david@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Eva\", \"email\": \"eva@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Frank\", \"email\": \"frank@example.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Grace\", \"email\": \"grace@example.com\" }"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

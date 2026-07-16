@@ -20,7 +20,7 @@ public class UserStatsScheduler {
 
   @Scheduled(cron = "0 * * * * *")
   public void logCurrentStats() {
-    final Map<Long, UserStats> stats = userStatsService.getStats();
+    final Map<String, UserStats> stats = userStatsService.getStats();
 
     if (stats.isEmpty()) {
       logger.info("no stats.");
@@ -29,7 +29,7 @@ public class UserStatsScheduler {
     printStats(stats);
   }
 
-  private void printStats(final Map<Long, UserStats> stats) {
+  private void printStats(final Map<String, UserStats> stats) {
     stats.forEach(
         (userId, userStats) -> {
           logger.info("user with id={} has been searched for {} times", userId, userStats.count());

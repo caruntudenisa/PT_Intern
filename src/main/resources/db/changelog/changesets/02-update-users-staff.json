@@ -1,0 +1,37 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2-seed-staff-users",
+        "author": "denisa",
+        "changes": [
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Staff One\", \"email\": \"staff1@pitchtech.com\" }"
+            }
+          },
+          {
+            "insertOne": {
+              "collectionName": "users",
+              "document": "{ \"name\": \"Staff Two\", \"email\": \"staff2@pitchtech.com\" }"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "3-update-users-staff",
+        "author": "denisa",
+        "changes": [
+          {
+            "customChange": {
+              "class": "betr.intern.spring_users.migration.UserStaffMigration"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
