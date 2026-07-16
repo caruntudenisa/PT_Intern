@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
+@org.springframework.data.mongodb.config.EnableMongoAuditing
 public class SpringUsersApplication {
 
   public static void main(final String[] args) {

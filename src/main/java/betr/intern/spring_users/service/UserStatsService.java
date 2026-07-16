@@ -7,9 +7,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class UserStatsService {
 
-  private final Map<Long, UserStats> stats = new ConcurrentHashMap<>();
+  private final Map<String, UserStats> stats = new ConcurrentHashMap<>();
 
-  public void incrementCount(final Long userId) {
+  public void incrementCount(final String userId) {
     stats.compute(
         userId,
         (key, existingStats) -> {
@@ -21,7 +21,7 @@ public class UserStatsService {
         });
   }
 
-  public Map<Long, UserStats> getStats() {
+  public Map<String, UserStats> getStats() {
     return stats;
   }
 
