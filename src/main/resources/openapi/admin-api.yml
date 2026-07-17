@@ -30,6 +30,39 @@ paths:
                 $ref: '#/components/schemas/UserDto'
         '404':
           description: User not found
+
+  /events/payments:
+    post:
+      summary: Send a payment event
+      operationId: processPaymentEvent
+      tags:
+        - events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentEventDto'
+      responses:
+        '200':
+          description: Payment event processed successfully
+
+  /events/notifications:
+    post:
+      summary: Send a notification event
+      operationId: processNotificationEvent
+      tags:
+        - events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationEventDto'
+      responses:
+        '200':
+          description: Notification event processed successfully
+
 components:
   schemas:
     UserDto:
@@ -43,3 +76,37 @@ components:
           type: string
         isStaff:
           type: boolean
+
+    PaymentEventDto:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        userId:
+          type: string
+        amount:
+          type: number
+        paymentMethod:
+          type: string
+        currency:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    NotificationEventDto:
+      type: object
+      properties:
+        recipient:
+          type: string
+        messageBody:
+          type: string
+        channelType:
+          type: string
+        sender:
+          type: string
+        subject:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
