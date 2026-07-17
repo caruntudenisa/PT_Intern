@@ -1,6 +1,6 @@
 package betr.intern.spring_users.event;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class PaymentEvent implements DomainEvent {
 
@@ -9,7 +9,7 @@ public class PaymentEvent implements DomainEvent {
   private final Double amount;
   private final String paymentMethod;
   private final String currency;
-  private final LocalDateTime timestamp;
+  private final OffsetDateTime timestamp;
 
   private PaymentEvent(final Builder builder) {
     this.transactionId = builder.transactionId;
@@ -26,7 +26,7 @@ public class PaymentEvent implements DomainEvent {
   }
 
   @Override
-  public LocalDateTime getTimestamp() {
+  public OffsetDateTime getTimestamp() {
     return this.timestamp;
   }
 
@@ -61,7 +61,7 @@ public class PaymentEvent implements DomainEvent {
     private Double amount;
     private String paymentMethod;
     private String currency;
-    private LocalDateTime timestamp;
+    private OffsetDateTime timestamp;
 
     public Builder transactionId(final String transactionId) {
       this.transactionId = transactionId;
@@ -88,14 +88,14 @@ public class PaymentEvent implements DomainEvent {
       return this;
     }
 
-    public Builder timestamp(final LocalDateTime timestamp) {
+    public Builder timestamp(final OffsetDateTime timestamp) {
       this.timestamp = timestamp;
       return this;
     }
 
     public PaymentEvent build() {
       if (this.timestamp == null) {
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = OffsetDateTime.now();
       }
       return new PaymentEvent(this);
     }

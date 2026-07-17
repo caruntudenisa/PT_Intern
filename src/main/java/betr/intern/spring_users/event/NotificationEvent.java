@@ -1,6 +1,6 @@
 package betr.intern.spring_users.event;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class NotificationEvent implements DomainEvent {
 
@@ -9,7 +9,7 @@ public class NotificationEvent implements DomainEvent {
   private final String channelType;
   private final String sender;
   private final String subject;
-  private final LocalDateTime timestamp;
+  private final OffsetDateTime timestamp;
 
   private NotificationEvent(final Builder builder) {
     this.recipient = builder.recipient;
@@ -26,7 +26,7 @@ public class NotificationEvent implements DomainEvent {
   }
 
   @Override
-  public LocalDateTime getTimestamp() {
+  public OffsetDateTime getTimestamp() {
     return this.timestamp;
   }
 
@@ -61,7 +61,7 @@ public class NotificationEvent implements DomainEvent {
     private String channelType;
     private String sender;
     private String subject;
-    private LocalDateTime timestamp;
+    private OffsetDateTime timestamp;
 
     public Builder recipient(final String recipient) {
       this.recipient = recipient;
@@ -88,14 +88,14 @@ public class NotificationEvent implements DomainEvent {
       return this;
     }
 
-    public Builder timestamp(final LocalDateTime timestamp) {
+    public Builder timestamp(final OffsetDateTime timestamp) {
       this.timestamp = timestamp;
       return this;
     }
 
     public NotificationEvent build() {
       if (this.timestamp == null) {
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = OffsetDateTime.now();
       }
       return new NotificationEvent(this);
     }

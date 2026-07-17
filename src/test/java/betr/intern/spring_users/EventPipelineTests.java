@@ -13,7 +13,7 @@ import betr.intern.spring_users.event.factory.EventProcessorFactory;
 import betr.intern.spring_users.event.processor.EventProcessor;
 import betr.intern.spring_users.event.processor.NotificationEventProcessor;
 import betr.intern.spring_users.event.processor.PaymentEventProcessor;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ class EventPipelineTests {
 
   @Test
   void testPaymentEventBuilder() {
-    final LocalDateTime now = LocalDateTime.now();
+    final OffsetDateTime now = OffsetDateTime.now();
     final PaymentEvent event =
         PaymentEvent.builder()
             .transactionId("tx-123")
@@ -61,7 +61,7 @@ class EventPipelineTests {
 
   @Test
   void testNotificationEventBuilder() {
-    final LocalDateTime now = LocalDateTime.now();
+    final OffsetDateTime now = OffsetDateTime.now();
     final NotificationEvent event =
         NotificationEvent.builder()
             .recipient("john@example.com")
