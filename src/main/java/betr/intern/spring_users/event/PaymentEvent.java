@@ -2,7 +2,7 @@ package betr.intern.spring_users.event;
 
 import java.time.OffsetDateTime;
 
-public class PaymentEvent implements DomainEvent {
+public class PaymentEvent {
 
   private final String transactionId;
   private final String userId;
@@ -20,12 +20,6 @@ public class PaymentEvent implements DomainEvent {
     this.timestamp = builder.timestamp;
   }
 
-  @Override
-  public EventType getEventType() {
-    return EventType.PAYMENT;
-  }
-
-  @Override
   public OffsetDateTime getTimestamp() {
     return this.timestamp;
   }

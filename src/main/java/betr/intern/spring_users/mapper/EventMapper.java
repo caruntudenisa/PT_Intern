@@ -28,13 +28,15 @@ public class EventMapper {
     if (dto == null) {
       return null;
     }
-    return NotificationEvent.builder()
-        .recipient(dto.getRecipient())
-        .messageBody(dto.getMessageBody())
-        .channelType(dto.getChannelType())
-        .sender(dto.getSender())
-        .subject(dto.getSubject())
-        .timestamp(dto.getTimestamp() != null ? dto.getTimestamp() : OffsetDateTime.now())
+    final OffsetDateTime timestamp =
+        dto.getTimestamp() != null ? dto.getTimestamp() : OffsetDateTime.now();
+    return NotificationEvent.newBuilder()
+        .setRecipient(dto.getRecipient())
+        .setMessageBody(dto.getMessageBody())
+        .setChannelType(dto.getChannelType())
+        .setSender(dto.getSender())
+        .setSubject(dto.getSubject())
+        .setTimestamp(timestamp.toString())
         .build();
   }
 }

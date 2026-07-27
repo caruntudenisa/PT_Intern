@@ -23,13 +23,9 @@ public class LiquibaseConfig {
             DatabaseFactory.getInstance()
                 .openDatabase(mongoUri, null, null, null, new ClassLoaderResourceAccessor());
 
-
     final Liquibase liquibase =
         new Liquibase(
-            "db/changelog/changelog-master.json",
-            new ClassLoaderResourceAccessor(),
-            database);
-
+            "db/changelog/changelog-master.json", new ClassLoaderResourceAccessor(), database);
 
     liquibase.clearCheckSums();
 
