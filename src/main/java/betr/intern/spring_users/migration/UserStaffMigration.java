@@ -20,7 +20,8 @@ public class UserStaffMigration implements CustomTaskChange, ApplicationContextA
   private static ApplicationContext context;
 
   @Override
-  public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
+  public void setApplicationContext(final ApplicationContext applicationContext)
+      throws BeansException {
     context = applicationContext;
   }
 
@@ -35,7 +36,8 @@ public class UserStaffMigration implements CustomTaskChange, ApplicationContextA
 
     for (final User user : users) {
       final String email = user.getEmail();
-      final boolean isStaff = email != null && email.trim().toLowerCase().endsWith("@pitchtech.com");
+      final boolean isStaff =
+          email != null && email.trim().toLowerCase().endsWith("@pitchtech.com");
       user.setIsStaff(isStaff);
       userRepository.save(user);
     }
