@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "NotificationEvent",
+  "namespace": "betr.intern.spring_users.event",
+  "fields": [
+    {
+      "name": "recipient",
+      "type": "string"
+    },
+    {
+      "name": "messageBody",
+      "type": "string"
+    },
+    {
+      "name": "channelType",
+      "type": "string"
+    },
+    {
+      "name": "sender",
+      "type": "string"
+    },
+    {
+      "name": "subject",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": "string"
+    }
+  ]
+}

@@ -1,36 +1,43 @@
 package betr.intern.spring_users;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import betr.intern.spring_users.event.EventType;
 import betr.intern.spring_users.event.NotificationEvent;
 import betr.intern.spring_users.event.PaymentEvent;
-import betr.intern.spring_users.event.factory.EventProcessorFactory;
-import betr.intern.spring_users.event.processor.EventProcessor;
-import betr.intern.spring_users.event.processor.NotificationEventProcessor;
-import betr.intern.spring_users.event.processor.PaymentEventProcessor;
+import betr.intern.spring_users.event.factory.NotificationProcessorFactory;
+import betr.intern.spring_users.event.processor.EmailNotificationProcessor;
+import betr.intern.spring_users.event.processor.NotificationProcessor;
+import betr.intern.spring_users.event.processor.SmsNotificationProcessor;
 import java.time.OffsetDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@SpringBootTest
+@SpringBootTest(properties = {
+    "spring.kafka.producer.properties.schema.registry.url=mock://test-registry",
+    "spring.kafka.consumer.properties.schema.registry.url=mock://test-registry"
+})
+@EmbeddedKafka(partitions = 1, bootstrapServersProperty = "spring.kafka.bootstrap-servers")
 class EventPipelineTests {
 
-  @Autowired private WebApplicationContext webApplicationContext;
+  @Autowired
+  private WebApplicationContext webApplicationContext;
 
   private MockMvc mockMvc;
 
-  @Autowired private EventProcessorFactory processorFactory;
+  @Autowired
+  private NotificationProcessorFactory processorFactory;
 
   @BeforeEach
   void setUp() {
@@ -56,20 +63,18 @@ class EventPipelineTests {
     assertEquals("CREDIT_CARD", event.getPaymentMethod());
     assertEquals("USD", event.getCurrency());
     assertEquals(now, event.getTimestamp());
-    assertEquals(EventType.PAYMENT, event.getEventType());
   }
 
   @Test
   void testNotificationEventBuilder() {
-    final OffsetDateTime now = OffsetDateTime.now();
     final NotificationEvent event =
-        NotificationEvent.builder()
-            .recipient("john@example.com")
-            .messageBody("Hello world")
-            .channelType("EMAIL")
-            .sender("system@example.com")
-            .subject("Welcome")
-            .timestamp(now)
+        NotificationEvent.newBuilder()
+            .setRecipient("john@example.com")
+            .setMessageBody("Hello world")
+            .setChannelType("EMAIL")
+            .setSender("system@example.com")
+            .setSubject("Welcome")
+            .setTimestamp("2026-07-27T10:00:00Z")
             .build();
 
     assertEquals("john@example.com", event.getRecipient());
@@ -77,20 +82,19 @@ class EventPipelineTests {
     assertEquals("EMAIL", event.getChannelType());
     assertEquals("system@example.com", event.getSender());
     assertEquals("Welcome", event.getSubject());
-    assertEquals(now, event.getTimestamp());
-    assertEquals(EventType.NOTIFICATION, event.getEventType());
+    assertEquals("2026-07-27T10:00:00Z", event.getTimestamp());
   }
 
   @Test
   void testFactoryAndProcessors() {
-    final EventProcessor paymentProcessor = this.processorFactory.getProcessor(EventType.PAYMENT);
-    assertTrue(paymentProcessor instanceof PaymentEventProcessor);
+    final NotificationProcessor emailProcessor = this.processorFactory.getProcessor("EMAIL");
+    assertTrue(emailProcessor instanceof EmailNotificationProcessor);
 
-    final EventProcessor notificationProcessor =
-        this.processorFactory.getProcessor(EventType.NOTIFICATION);
-    assertTrue(notificationProcessor instanceof NotificationEventProcessor);
+    final NotificationProcessor smsProcessor = this.processorFactory.getProcessor("SMS");
+    assertTrue(smsProcessor instanceof SmsNotificationProcessor);
 
     assertThrows(IllegalArgumentException.class, () -> this.processorFactory.getProcessor(null));
+    assertThrows(IllegalArgumentException.class, () -> this.processorFactory.getProcessor("UNKNOWN"));
   }
 
   @Test
